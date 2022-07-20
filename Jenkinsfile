@@ -27,11 +27,6 @@ pipeline {
             steps {
                 sh "dotnet test"
             }
-            post{
-                always{
-                    junit '**/target/surefire-reports/TEST-*.xml'
-                }
-            }
         }
         stage('Quality Scan'){
             steps {
