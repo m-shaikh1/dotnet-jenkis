@@ -28,15 +28,7 @@ pipeline {
                 sh "dotnet test"
             }
         }
-        stage('Quality Scan'){
-            steps {
-                sh '''
-                    /usr/bin/dotnet /home/ubuntu/.dotnet/tools/dotnet-sonarscanner begin /k:"moedotnet" /d:sonar.host.url="http://$SONAR_IP"  /d:sonar.login="$SONAR_TOKEN"
-                    /usr/bin/dotnet build
-                    /usr/bin/dotnet /home/ubuntu/.dotnet/tools/dotnet-sonarscanner end /d:sonar.login=$SONAR_TOKEN
-                '''
-            }
-        }
+
         stage('Publish') {
             steps {
                 sh "dotnet publish"
