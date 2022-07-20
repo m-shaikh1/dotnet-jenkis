@@ -31,7 +31,7 @@ pipeline {
         stage('Quality Scan'){
             steps {
                 sh '''
-                    dotnet sonarscanner begin /k:"moedotnet" /d:sonar.host.url=$SONAR_IP  /d:sonar.login=$SONAR_TOKEN
+                    dotnet sonarscanner begin /k:"moedotnet" /d:sonar.host.url="http://$SONAR_IP"  /d:sonar.login=$SONAR_TOKEN
                     dotnet build
                     dotnet sonarscanner end /d:sonar.login=$SONAR_TOKEN
                 '''
