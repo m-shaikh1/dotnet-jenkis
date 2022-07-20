@@ -5,9 +5,9 @@ pipeline {
         AWS_SECRET_ACCESS_KEY = credentials('jenkins-secret-access-key')
         AWS_S3_BUCKET = "artifact-bucket-repo-2"
         ARTIFACT_NAME = "hello-world.dll"
-        AWS_EB_APP_NAME = "java-webapp"
+        AWS_EB_APP_NAME = "dotnet-jenkins"
         AWS_EB_APP_VERSION = "${BUILD_ID}"
-        AWS_EB_ENVIRONMENT = "Javawebapp-env"
+        AWS_EB_ENVIRONMENT = "Dotnetjenkins-env"
         SONAR_IP = "54.226.50.200"
         SONAR_TOKEN = "sqp_45c30618c290c222e46cf17ee32bf30166682553"
     }
@@ -44,7 +44,7 @@ pipeline {
         stage('Publish artifacts to S3 Bucket') {
             steps {
                 sh "aws configure set region us-east-1"
-                sh "aws s3 cp ./target/**.war s3://$AWS_S3_BUCKET/$ARTIFACT_NAME"
+                sh "aws s3 cp **/bin/Debug/net6.0/**.dll s3://$AWS_S3_BUCKET/$ARTIFACT_NAME"
             }
          }
         stage('Deploy') {
