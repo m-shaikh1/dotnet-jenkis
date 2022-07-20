@@ -28,15 +28,7 @@ pipeline {
                 sh "dotnet test"
             }
         }
-        stage('Quality Scan'){
-            steps {
-                sh '''
-                    -dotnet sonarscanner begin /k:"moedotnet" /d:sonar.host.url="http://54.226.50.200"  /d:sonar.login="sqp_45c30618c290c222e46cf17ee32bf30166682553"
-                    -dotnet build/
-                    -dotnet sonarscanner end /d:sonar.login="sqp_45c30618c290c222e46cf17ee32bf30166682553"
-                '''
-            }
-        }
+
         stage('Publish') {
             steps {
                 sh "dotnet publish"
